@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {startDeleteCustomer} from '../../actions/usersAction'
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import swal from 'sweetalert'
 import EditCustomer from './EditCustomer'
 import {Card, CardActionArea,  CardActions, CardContent, Button, Typography} from '@material-ui/core';
@@ -67,12 +69,12 @@ const CustomersItem = (props) => {
                       </CardActionArea>
                       <CardActions>
                         <Button  onClick={handleToggle} size="small" color="primary">
-                          edit
+                          <EditIcon fontSize="small"/>
                         </Button>
                         <Button size="small" color="secondary" onClick={() => {
                                         handleRemove(_id)
                                     }}>
-                          delete
+                          <DeleteIcon fontSize="small"/>
                         </Button>
                       </CardActions>
                 </Card>

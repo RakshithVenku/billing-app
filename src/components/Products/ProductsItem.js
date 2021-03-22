@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {startDeleteProduct} from '../../actions/usersAction'
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import swal from 'sweetalert'
 import EditProduct from './EditProduct'
 import {Card, CardActionArea,  CardActions, CardContent, Button, Typography} from '@material-ui/core';
@@ -20,7 +22,7 @@ const ProductsItem = (props) => {
     const handleRemove = (id) => {
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this note!",
+            text: "Once deleted, you will not be able to recover this product!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -63,12 +65,12 @@ const ProductsItem = (props) => {
                       </CardActionArea>
                       <CardActions>
                         <Button  onClick={handleToggle} size="small" color="primary">
-                          edit
+                          <EditIcon fontSize="small"/>
                         </Button>
                         <Button size="small" color="secondary" onClick={() => {
                                         handleRemove(_id)
                                     }}>
-                          delete
+                          <DeleteIcon fontSize="small"/>
                         </Button>
                       </CardActions>
                 </Card>

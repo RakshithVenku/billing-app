@@ -50,8 +50,8 @@ const ProductsList = (props) => {
                     <Grid container spacing={2} style={{overflowY : 'scroll', maxHeight : '400px'}} >
                          {products.map((product) => {
                             return (
-                                <Grid item xs={6}>
-                                    <ProductsItem key={product._id} {...product} />
+                                <Grid item xs={6} key={product._id}>
+                                    <ProductsItem  {...product} />
                                 </Grid>
                             )
                          })}
