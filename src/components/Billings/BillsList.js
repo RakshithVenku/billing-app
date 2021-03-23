@@ -54,8 +54,8 @@ const BillsList = (props) => {
                     <Grid container spacing={2} style={{overflowY : 'scroll', maxHeight : '400px'}} >
                          {bills.map((bill) => {
                             return (
-                                <Grid item xs={12}>
-                                    <BillsItem key={bill._id} {...bill} />
+                                <Grid item xs={12} key={bill._id}>
+                                    <BillsItem  {...bill} />
                                 </Grid>
                             )
                          })}

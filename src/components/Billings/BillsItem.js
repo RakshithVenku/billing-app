@@ -54,13 +54,14 @@ const BillsItem = (props) => {
                       <CardActionArea>
                         <CardContent>
                           <Typography gutterBottom variant="h5" component="h2">
-                           <b>Name :</b> {customerObj.name}        
+                           <b>Name :</b> {customerObj && customerObj.name}        
                           </Typography>
                           <Typography variant="body2" color="textSecondary" component="p">
-                            Phn.No : +91 {customerObj.mobile}
+                            Phn.No : +91 {customerObj && customerObj.mobile}
                           </Typography>
                           <Typography variant="body2" color="textSecondary" component="p">
                             Products Bought : 
+                            </Typography>
                             <Table border="2" size="small">
                                 <TableHead>
                                     <TableRow>
@@ -84,7 +85,7 @@ const BillsItem = (props) => {
                                 </TableBody>
                             </Table>
                             
-                          </Typography>
+                         
                           <Typography variant="body2" color="textSecondary" component="p">
                             <b>Total: ₹{total}</b>
                           </Typography>

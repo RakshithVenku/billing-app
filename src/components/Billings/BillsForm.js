@@ -18,7 +18,7 @@ const BillsForm = (props) => {
     const {formSubmit} = props
     const [date, setDate] = useState('')
     const [customer, setCustomer] = useState('')
-    const [product, setProduct] = useState('')
+    const [product, setProduct] = useState([])
     const [quantity, setQuantity] = useState('')
 
     const handleDateChange = (e) => {
@@ -30,6 +30,7 @@ const BillsForm = (props) => {
     }
 
     const handleProductChange = (e) => {
+        console.log('product',e.target.value)
         setProduct(e.target.value)
     }
 
@@ -40,21 +41,26 @@ const BillsForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        let lineItems = []
+        
+        for(const prod of product){
+            let obj = {
+                'product' : prod,
+                'quantity' : quantity
+            }
+            lineItems.push(obj)
+        }
+
         const formData = {
             "date" : date ,
             "customer" : customer,
-            "lineItems" : [
-                {
-                    "product" : product,
-                    "quantity" : quantity
-                }
-            ]
+            "lineItems" : lineItems
         }
 
         formSubmit(formData)
         setDate('')
         setCustomer('')
-        setProduct('')
+        setProduct([])
         setQuantity('')
     }
 
@@ -85,10 +91,11 @@ const BillsForm = (props) => {
 
                 <Grid item xs={12}> 
                    <FormControl size="small" style={{width:"210px"}} >
-                      <InputLabel id="demo-simple-select-label">Product</InputLabel>
+                      <InputLabel id="demo-mutiple-name-label">Product</InputLabel>
                       <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
+                        labelId="demo-mutiple-name-label"
+                        id="demo-mutiple-name"
+                        multiple
                         value={product}
                         onChange={handleProductChange}
                       > 
