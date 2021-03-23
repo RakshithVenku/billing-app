@@ -15,8 +15,10 @@ const Account = (props) => {
         <div>
             <hr />
             <h2>User Account</h2>
-            <p> Username -  {user.username} </p>
-            <p> Email - {user.email} </p>
+            <p> <b>Username</b> -  {user.username} </p>
+            <p> <b>Email</b> - {user.email} </p>
+            <p> <b>BusinessName</b> - {user.businessName}</p>
+            <p> <b>Address</b> - {user.address}</p>
         </div>
     )
 }

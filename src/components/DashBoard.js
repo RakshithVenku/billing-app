@@ -11,10 +11,14 @@ const DashBoard = (props) => {
         return state.products
     })
 
+    const bills = useSelector((state) => {
+        return state.bills
+    })
+
     return (
         <div >
             <Typography variant="h4" component="h2" style={{textAlign : 'center'}}>User DashBoard</Typography>
-            <Grid container spacing={2} justify="center" alignItems="center">
+            <Grid container spacing={2} justify="center" >
                 <Grid item xs={3}>
                     <Card>
                         <CardContent>
@@ -48,7 +52,7 @@ const DashBoard = (props) => {
                                 Number of Billings today
                                 </Typography>
                                 <Typography variant="h3" component="h2">
-                                0
+                                {bills.length}
                                 </Typography>
                             </CardContent>
                     </Card>
@@ -61,7 +65,7 @@ const DashBoard = (props) => {
                                 Last 5 Bills
                                 </Typography>
                                 <Typography variant="h3" component="h2">
-                                0
+                                ---
                                 </Typography>
                             </CardContent>
                     </Card>

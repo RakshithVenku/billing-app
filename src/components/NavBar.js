@@ -10,6 +10,7 @@ import Account from './Account'
 import DashBoard from './DashBoard'
 import ProductsContainer from './Products/ProductsContainer'
 import CustomersContainer from './Customers/CustomersContainer'
+import BillsContainer from './Billings/BillsContainer'
 
 
 
@@ -74,6 +75,7 @@ const NavBar = (props) => {
             <Route path="/products" component={ProductsContainer} />
             <Route path="/account" component={Account} />
             <Route path="/customers" component={CustomersContainer} />
+            <Route path="/billing" component={BillsContainer} />
         </div>
     )
 }

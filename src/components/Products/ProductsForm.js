@@ -33,15 +33,15 @@ const ProductsForm = (props) => {
             <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
                 <Grid item xs={12}> 
-                <TextField variant="outlined"  type="text" placeholder="name" value={name} onChange={handleNameChange} /><br/>
+                <TextField variant="outlined" size="small"  type="text" label="name" value={name} onChange={handleNameChange} /><br/>
                 </Grid>
 
                 <Grid item xs={12}> 
-                <TextField variant="outlined" type="text" placeholder="price" value={price} onChange={handlePriceChange} /><br/>
+                <TextField variant="outlined" size="small" type="text" label="price" value={price} onChange={handlePriceChange} /><br/>
                 </Grid>
                 
                 <Grid item xs={12}> 
-                <Button type="submit" variant="contained" color="primary"> add </Button>
+                <Button type="submit" size="small" variant="contained" color="primary"> add </Button>
                 </Grid>
             </Grid>
                

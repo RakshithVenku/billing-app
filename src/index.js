@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import 'bootstrap/dist/css/bootstrap.css'
 // import './index.css'
 import App from './App'
 import configureStore from './store/configureStore'
-// import {startUserNotes, startUserAccount} from './actions/usersAction'
 import {startProductsList, startUserAccount, startCustomersList} from './actions/usersAction'
+import {startBillsList} from './actions/billsAction'
 import { BrowserRouter } from 'react-router-dom'
 import {Provider} from 'react-redux'
 
@@ -23,6 +22,7 @@ if(localStorage.getItem('token')){
  store.dispatch(startUserAccount())
  store.dispatch(startProductsList())
  store.dispatch(startCustomersList())
+ store.dispatch(startBillsList())
 }
 
 

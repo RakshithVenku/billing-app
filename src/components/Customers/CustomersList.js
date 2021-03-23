@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useSelector} from 'react-redux'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, TextField } from '@material-ui/core'
 import CustomersItem from './CustomersItem'
 
 
@@ -28,8 +28,10 @@ const CustomersList = (props) => {
             <h2>Customers List</h2>
             {customers.length === 0 ? (
                 <div>
-                    <input  
+                    <TextField  
                        style={{width: '30%', marginBottom : '25px'}}
+                       variant="outlined"
+                       size="small"
                        type = "text" 
                        placeholder = "Search by name..." 
                        onChange = {handleSearchChange} 
@@ -40,8 +42,10 @@ const CustomersList = (props) => {
                 
             ) : (
                 <div>
-                     <input  
+                     <TextField  
                        style={{width: '30%', marginBottom : '25px'}}
+                       variant="outlined"
+                       size="small"
                        type = "text" 
                        placeholder = "Search by name..." 
                        onChange = {handleSearchChange} 
