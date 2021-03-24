@@ -11,11 +11,12 @@ import DashBoard from './DashBoard'
 import ProductsContainer from './Products/ProductsContainer'
 import CustomersContainer from './Customers/CustomersContainer'
 import BillsContainer from './Billings/BillsContainer'
+import ShowBill from './Billings/ShowBill'
 
 
 
 const NavBar = (props) => {
-    const {userLoggedIn, handleAuth} = props
+    const {userLoggedIn, handleAuth, handleShowBill} = props
     return (
         <div>
             <p  style={{textAlign : "center"}}>
@@ -75,7 +76,19 @@ const NavBar = (props) => {
             <Route path="/products" component={ProductsContainer} />
             <Route path="/account" component={Account} />
             <Route path="/customers" component={CustomersContainer} />
-            <Route path="/billing" component={BillsContainer} />
+            <Route path="/billing" render={(props) => {
+                return <BillsContainer
+                          {...props}
+                          handleShowBill={handleShowBill}
+                       />
+            }} />
+            
+            <Route path="/showBill" render={(props) => {
+                return <ShowBill
+                          {...props}
+                          handleShowBill={handleShowBill}
+                       />
+            }} />
         </div>
     )
 }

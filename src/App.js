@@ -4,9 +4,14 @@ import Container from '@material-ui/core/Container';
 
 const App = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false)
+  const [showBill, setShowBill] = useState(false)
 
   const handleAuth = () => {
     setUserLoggedIn(!userLoggedIn)
+  }
+
+  const handleShowBill = () => {
+    setShowBill(!showBill)
   }
 
   useEffect(() => {
@@ -19,7 +24,7 @@ const App = (props) => {
     <Container component="main">
        <div>
            <h1 style={{textAlign : "center"}}>Billing App</h1>
-           <NavBar userLoggedIn={userLoggedIn} handleAuth={handleAuth}/>
+           <NavBar userLoggedIn={userLoggedIn} handleAuth={handleAuth} showBill={showBill} handleShowBill={handleShowBill} />
        </div>
     </Container>
   )

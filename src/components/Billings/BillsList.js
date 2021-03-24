@@ -6,6 +6,7 @@ import BillsItem from './BillsItem'
 
 const BillsList = (props) => {
     // const [input, setInput] = useState('')
+    const {handleShowBill} = props
 
     let bills = useSelector((state) => {
         return state.bills
@@ -55,7 +56,7 @@ const BillsList = (props) => {
                          {bills.map((bill) => {
                             return (
                                 <Grid item xs={12} key={bill._id}>
-                                    <BillsItem  {...bill} />
+                                    <BillsItem  {...bill} handleShowBill={handleShowBill}/>
                                 </Grid>
                             )
                          })}

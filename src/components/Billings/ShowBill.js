@@ -1,55 +1,21 @@
-import React from 'react'
+import React from 'react' 
 import {Link} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
-import {startDeleteBill} from '../../actions/billsAction'
-import DeleteIcon from '@material-ui/icons/Delete';
-import swal from 'sweetalert'
 import {Card, CardActionArea, CardActions, CardContent, Button, Typography} from '@material-ui/core';
 import {Table, TableBody, TableCell, TableHead, TableRow} from '@material-ui/core';
 
+const ShowBill = (props) => {
+    const {handleShowBill, productsBought, customerObj, total} = props
 
-const BillsItem = (props) => {
-    const {handleShowBill} = props
-    const dispatch = useDispatch()
-    
-    const {_id, customer, lineItems, total} = props
-
-    const customerObj = useSelector((state) => {
-        return state.customers.find(cus => cus._id === customer)
-    })
-
-    const productsBought = useSelector((state) => {
-        const arr = []
-
-        for(const item of lineItems){
-            const res = state.products.find(prod => prod._id === item.product)
-            arr.push({...res, ...item})
-        }
-        return arr
-    })
-
-    
-    const handleRemove = (id) => {
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this bill!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-                dispatch(startDeleteBill(id))
-            } 
-          })
-
+    const handleBtn = () => {
+        handleShowBill()
     }
-
 
     return (
         <div>
-                <Card >
-                      <CardActionArea>
+           <h2>Show Bill</h2>
+          
+           <Card >
+           <CardActionArea>
                         <CardContent>
                           <Typography gutterBottom variant="h5" component="h2">
                            <b>Name :</b> {customerObj && customerObj.name}        
@@ -70,7 +36,7 @@ const BillsItem = (props) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {productsBought.map((product) => {
+                                    {productsBought && productsBought.map((product) => {
                                         return (
                                             <TableRow key={product._id}>
                                                 <TableCell>{product.name}</TableCell>
@@ -89,22 +55,14 @@ const BillsItem = (props) => {
                           </Typography>
                         </CardContent>
                       </CardActionArea>
-                      <CardActions>
-                        <Button size="small" color="primary" onClick={() => {handleShowBill()}} >
-                          <Link to="/showBill" >Bill</Link>
-                        </Button>
-                        <Button size="small" color="secondary" onClick={() => {
-                                        handleRemove(_id)
-                                    }}>
-                          <DeleteIcon fontSize="small"/>
-                        </Button>
-                      </CardActions>
-                </Card>
+           </Card>
+
+
+            <button onClick={handleBtn}>
+            <Link to="/billing" >back</Link>
+            </button>
         </div>
-    )
+    )     
 }
 
-export default BillsItem
-
-
- 
+export default ShowBill

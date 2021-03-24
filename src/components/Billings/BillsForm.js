@@ -19,7 +19,9 @@ const BillsForm = (props) => {
     const [date, setDate] = useState('')
     const [customer, setCustomer] = useState('')
     const [product, setProduct] = useState([])
-    const [quantity, setQuantity] = useState('')
+    const [quantity, setQuantity] = useState([])
+
+    const maxQuantityNum = [1,2,3,4,5,6,7,8,9,10]
 
     const handleDateChange = (e) => {
         setDate(e.target.value)
@@ -35,6 +37,7 @@ const BillsForm = (props) => {
     }
 
     const handleQuantityChange = (e) => {
+        console.log('quantity',e.target.value)
         setQuantity(e.target.value)
     }
 
@@ -43,13 +46,14 @@ const BillsForm = (props) => {
 
         let lineItems = []
         
-        for(const prod of product){
+        product.forEach((prod, i) => {
+            let quan = quantity[i]
             let obj = {
                 'product' : prod,
-                'quantity' : quantity
+                'quantity' : quan
             }
             lineItems.push(obj)
-        }
+        })
 
         const formData = {
             "date" : date ,
@@ -61,7 +65,7 @@ const BillsForm = (props) => {
         setDate('')
         setCustomer('')
         setProduct([])
-        setQuantity('')
+        setQuantity([])
     }
 
     return (
@@ -107,7 +111,21 @@ const BillsForm = (props) => {
                 </Grid>
 
                 <Grid item xs={12}> 
-                   <TextField variant="outlined" size="small"  type="number" placeholder="quantity" value={quantity} onChange={handleQuantityChange} /><br/>
+                   {/* <TextField variant="outlined" size="small"  type="number" placeholder="quantity" value={quantity} onChange={handleQuantityChange} /><br/> */}
+                   <FormControl size="small" style={{width:"210px"}} >
+                      <InputLabel id="demo-mutiple-name-label">Quantity</InputLabel>
+                      <Select
+                        labelId="demo-mutiple-name-label"
+                        id="demo-mutiple-name"
+                        multiple
+                        value={quantity}
+                        onChange={handleQuantityChange}
+                      > 
+                        {maxQuantityNum.map((num,id) => {
+                            return <MenuItem key={id} value={num}>{num}</MenuItem>
+                        })}
+                      </Select>
+                   </FormControl>
                 </Grid>
                 
                 <Grid item xs={12}> 

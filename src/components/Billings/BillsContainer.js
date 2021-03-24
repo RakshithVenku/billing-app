@@ -6,6 +6,7 @@ import BillsList from './BillsList'
 import AddBill from './AddBill'
 
 const BillsContainer = (props) => {
+    const {handleShowBill} = props
     const dispatch = useDispatch()
     
     useEffect(() => {
@@ -17,7 +18,7 @@ const BillsContainer = (props) => {
         <div >
             <Grid container spacing={3}>
                 <Grid item xs={6}>
-                    <BillsList/>
+                    <BillsList handleShowBill={handleShowBill}/>
                 </Grid>
 
                 <Grid item xs={6}>
