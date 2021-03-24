@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {startDeleteBill} from '../../actions/billsAction'
+import {addCusObj, addBillProd} from '../../actions/billProdAction'
+import {billTotal} from '../../actions/billTotalAction'
 import DeleteIcon from '@material-ui/icons/Delete';
 import swal from 'sweetalert'
 import {Card, CardActionArea, CardActions, CardContent, Button, Typography} from '@material-ui/core';
@@ -10,7 +12,7 @@ import {Table, TableBody, TableCell, TableHead, TableRow} from '@material-ui/cor
 
 const BillsItem = (props) => {
     const {handleShowBill} = props
-    const dispatch = useDispatch()
+    let dispatch = useDispatch()
     
     const {_id, customer, lineItems, total} = props
 
@@ -45,10 +47,17 @@ const BillsItem = (props) => {
 
     }
 
+    const handleBillBtn = () => {
+       dispatch(addCusObj(customerObj))
+       dispatch(addBillProd(productsBought))
+       dispatch(billTotal(total))
+       handleShowBill()
+    }
+
 
     return (
         <div>
-                <Card >
+                <Card elevation={4}>
                       <CardActionArea>
                         <CardContent>
                           <Typography gutterBottom variant="h5" component="h2">
@@ -84,13 +93,13 @@ const BillsItem = (props) => {
                             </Table>
                             
                          
-                          <Typography variant="body2" color="textSecondary" component="p">
+                          <Typography variant="body2" align="right" color="textSecondary" component="p">
                             <b>Total: ₹{total}</b>
                           </Typography>
                         </CardContent>
                       </CardActionArea>
                       <CardActions>
-                        <Button size="small" color="primary" onClick={() => {handleShowBill()}} >
+                        <Button size="small" color="primary" onClick={handleBillBtn} >
                           <Link to="/showBill" >Bill</Link>
                         </Button>
                         <Button size="small" color="secondary" onClick={() => {

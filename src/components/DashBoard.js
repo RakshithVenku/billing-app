@@ -37,7 +37,7 @@ const DashBoard = (props) => {
             <Typography variant="h4" component="h2" style={{textAlign : 'center'}}>User DashBoard</Typography>
             <Grid container spacing={2} justify="center" >
                 <Grid item xs={3}>
-                    <Card>
+                    <Card elevation={8}>
                         <CardContent>
                             <Typography variant="h5" component="h2">
                             Number of Customers
@@ -50,7 +50,7 @@ const DashBoard = (props) => {
                 </Grid>
 
                 <Grid item xs={3}>
-                    <Card>
+                    <Card elevation={8}>
                             <CardContent>
                                 <Typography variant="h5" component="h2">
                                 Number of Products
@@ -63,7 +63,7 @@ const DashBoard = (props) => {
                 </Grid>
 
                 <Grid item xs={3}>
-                    <Card>
+                    <Card elevation={8}>
                             <CardContent>
                                 <Typography variant="h5" component="h2">
                                 Number of Billings today
@@ -76,14 +76,14 @@ const DashBoard = (props) => {
                 </Grid>
 
                 <Grid item xs={4} justify="center" alignItems="center">
-                    <Card>
+                    <Card elevation={8}>
                             <CardContent>
                                 <Typography variant="h5" component="h2">
                                 Last 5 Bills
                                 </Typography>
                                    <Chart
-                                     width={'500px'}
-                                     height={'400px'}
+                                     width={'400px'}
+                                     height={'200px'}
                                      chartType="PieChart"
                                      loader={<div>Loading Chart</div>}
                                      data={chartData}

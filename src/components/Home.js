@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 const Home = (props) => {
 
@@ -17,7 +17,9 @@ const Home = (props) => {
                    <img src="https://via.placeholder.com/250" alt=""></img>
                 </Grid>
             </Grid>
-            <p>@Created by Rakshith</p>
+            <Typography variant="h5" component="h3">
+                @Created by Rakshith
+            </Typography>
         </div>
     )
 }

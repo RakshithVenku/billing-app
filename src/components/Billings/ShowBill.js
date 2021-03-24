@@ -1,20 +1,38 @@
 import React from 'react' 
-import {Link} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import {removeCusObj, removeBillProd} from '../../actions/billProdAction'
+import {removeBillTotal} from '../../actions/billTotalAction'
+import PrintIcon from '@material-ui/icons/Print';
 import {Card, CardActionArea, CardActions, CardContent, Button, Typography} from '@material-ui/core';
 import {Table, TableBody, TableCell, TableHead, TableRow} from '@material-ui/core';
 
 const ShowBill = (props) => {
-    const {handleShowBill, productsBought, customerObj, total} = props
+    let dispatch = useDispatch()
+    const {handleShowBill} = props
+    const customerObj = useSelector((state) => {
+        return state.customerObj
+    })
+    const productsBought = useSelector((state) => {
+        return state.productsBought
+    })
+    const total = useSelector((state) => {
+        return state.billTotal
+    })
+
 
     const handleBtn = () => {
+        dispatch(removeCusObj())
+        dispatch(removeBillProd())
+        dispatch(removeBillTotal())
         handleShowBill()
+        props.history.push('/billing')
     }
 
     return (
         <div>
-           <h2>Show Bill</h2>
+           <Typography variant="h4" align="center">Bill INVOICE</Typography>
           
-           <Card >
+           <Card  elevation={10}>
            <CardActionArea>
                         <CardContent>
                           <Typography gutterBottom variant="h5" component="h2">
@@ -50,17 +68,29 @@ const ShowBill = (props) => {
                             </Table>
                             
                          
-                          <Typography variant="body2" color="textSecondary" component="p">
+                          <Typography variant="h5" align="right"  component="h3">
                             <b>Total: ₹{total}</b>
+                          </Typography>
+                          <Typography align="center" variant="body2"  color="textPrimary" component="p">
+                             Note: Products once sold cannot be returned!
+                          </Typography>
+                          <Typography align="center" variant="body2"  color="textPrimary" component="p">
+                             ***Thank You!...Visit Again!***
                           </Typography>
                         </CardContent>
                       </CardActionArea>
-           </Card>
-
-
-            <button onClick={handleBtn}>
-            <Link to="/billing" >back</Link>
-            </button>
+                      <CardActions>
+                           <Button variant="contained" color="secondary"  onClick={handleBtn}>
+                            back
+                           </Button>
+                           <Button variant="contained" 
+                                   color="primary" 
+                                   startIcon={<PrintIcon/>}
+                                   onClick={() => {window.print()}} >
+                               Print Bill
+                           </Button>
+                      </CardActions>
+                     </Card>
         </div>
     )     
 }
