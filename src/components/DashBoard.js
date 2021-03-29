@@ -66,7 +66,7 @@ const DashBoard = (props) => {
                     <Card elevation={8}>
                             <CardContent>
                                 <Typography variant="h5" component="h2">
-                                Number of Billings today
+                                Number of Billings
                                 </Typography>
                                 <Typography variant="h3" component="h2">
                                 {bills.length}

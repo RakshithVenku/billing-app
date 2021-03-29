@@ -30,6 +30,8 @@ const BillsItem = (props) => {
         return arr
     })
 
+    console.log(customerObj)
+
     
     const handleRemove = (id) => {
         swal({

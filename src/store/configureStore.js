@@ -6,10 +6,12 @@ import billProductsReducer from '../reducers/billProductsReducer'
 import billsReducer from '../reducers/billsReducer'
 import billTotalReducer from '../reducers/billTotalReducer'
 import customersReducer from '../reducers/customersReducer'
+import lineItemsReducer from '../reducers/lineItemsReducer'
 import productsReducer from '../reducers/productsReducer'
 
 const configureStore = () => {
     const store = createStore(combineReducers({
+        lineItems : lineItemsReducer,
         account : accountReducer,
         products : productsReducer,
         customers : customersReducer,

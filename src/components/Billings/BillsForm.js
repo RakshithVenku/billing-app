@@ -1,12 +1,17 @@
 import React, {useState} from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import {addItem, resetItems , incrementQuantity, decrementQuantity, removeItem} from '../../actions/lineItemsAction'
 import {TextField,  Button, Grid} from '@material-ui/core'
+import AddCircleSharpIcon from '@material-ui/icons/AddCircleSharp';
+import RemoveCircleSharpIcon from '@material-ui/icons/RemoveCircleSharp';
+import CancelSharpIcon from '@material-ui/icons/CancelSharp';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
 const BillsForm = (props) => {
+    const dispatch = useDispatch()
     const customers = useSelector((state) => {
         return state.customers
     })
@@ -15,13 +20,17 @@ const BillsForm = (props) => {
         return state.products
     })
 
+    const lineItems = useSelector((state) => {
+        return state.lineItems
+    })
+
+    
+
     const {formSubmit} = props
     const [date, setDate] = useState('')
     const [customer, setCustomer] = useState('')
-    const [product, setProduct] = useState([])
-    const [quantity, setQuantity] = useState([])
-
-    const maxQuantityNum = [1,2,3,4,5,6,7,8,9,10]
+    const [product, setProduct] = useState('')
+    
 
     const handleDateChange = (e) => {
         setDate(e.target.value)
@@ -36,25 +45,34 @@ const BillsForm = (props) => {
         setProduct(e.target.value)
     }
 
-    const handleQuantityChange = (e) => {
-        console.log('quantity',e.target.value)
-        setQuantity(e.target.value)
+    const itemGenerator = (item) => {
+        let quantity = 0
+        const itemObj = {
+            'prodName' : item.name,
+            'product' : item._id,
+            'quantity' : quantity
+        }
+        dispatch(addItem(itemObj))
+        console.log('lineItems', lineItems)
     }
+
+    const handleDecre = (id) => {
+        dispatch(decrementQuantity(id))
+    }
+
+    const handleIncre = (id) => {
+        dispatch(incrementQuantity(id))
+    }
+
+    const handleRemove = (id) => {
+        dispatch(removeItem(id))
+    }
+
+   
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        let lineItems = []
         
-        product.forEach((prod, i) => {
-            let quan = quantity[i]
-            let obj = {
-                'product' : prod,
-                'quantity' : quan
-            }
-            lineItems.push(obj)
-        })
-
         const formData = {
             "date" : date ,
             "customer" : customer,
@@ -64,8 +82,8 @@ const BillsForm = (props) => {
         formSubmit(formData)
         setDate('')
         setCustomer('')
-        setProduct([])
-        setQuantity([])
+        setProduct('')
+        dispatch(resetItems())
     }
 
     return (
@@ -95,37 +113,39 @@ const BillsForm = (props) => {
 
                 <Grid item xs={12}> 
                    <FormControl size="small" style={{width:"210px"}} >
-                      <InputLabel id="demo-mutiple-name-label">Product</InputLabel>
+                      <InputLabel id="demo-simple-select-label">Product</InputLabel>
                       <Select
-                        labelId="demo-mutiple-name-label"
-                        id="demo-mutiple-name"
-                        multiple
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
                         value={product}
                         onChange={handleProductChange}
                       > 
-                        {products.map((product) => {
-                            return <MenuItem key={product._id} value={product._id}>{product.name}</MenuItem>
+                        {products.map((item) => {
+                            return <MenuItem key={item._id} 
+                                             value={item._id}
+                                             onClick={() => {itemGenerator(item)}}>
+                                                 {item.name}
+                                   </MenuItem>
                         })}
                       </Select>
                    </FormControl>
                 </Grid>
 
-                <Grid item xs={12}> 
-                   {/* <TextField variant="outlined" size="small"  type="number" placeholder="quantity" value={quantity} onChange={handleQuantityChange} /><br/> */}
-                   <FormControl size="small" style={{width:"210px"}} >
-                      <InputLabel id="demo-mutiple-name-label">Quantity</InputLabel>
-                      <Select
-                        labelId="demo-mutiple-name-label"
-                        id="demo-mutiple-name"
-                        multiple
-                        value={quantity}
-                        onChange={handleQuantityChange}
-                      > 
-                        {maxQuantityNum.map((num,id) => {
-                            return <MenuItem key={id} value={num}>{num}</MenuItem>
-                        })}
-                      </Select>
-                   </FormControl>
+                <Grid item xs={12}>
+                <ul>
+                    {lineItems.map((item) => {
+                       return <li key={item.product}>{item.prodName} 
+                               <Button size="small" color="primary"
+                                  onClick={() => {handleDecre(item.product)}}> <RemoveCircleSharpIcon /> </Button>
+                               {item.quantity}
+
+                               <Button size="small" color="primary"
+                                  onClick={() => {handleIncre(item.product)}}> <AddCircleSharpIcon /></Button>
+                               <Button size="small" color="secondary"
+                                  onClick={() => {handleRemove(item.product)}} > <CancelSharpIcon /> </Button>
+                               </li>
+                    })}
+                </ul>
                 </Grid>
                 
                 <Grid item xs={12}> 

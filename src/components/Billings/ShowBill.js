@@ -1,5 +1,6 @@
 import React from 'react' 
 import {useSelector, useDispatch} from 'react-redux'
+import ReactToPrint from "react-to-print";
 import {removeCusObj, removeBillProd} from '../../actions/billProdAction'
 import {removeBillTotal} from '../../actions/billTotalAction'
 import PrintIcon from '@material-ui/icons/Print';
@@ -89,6 +90,10 @@ const ShowBill = (props) => {
                                    onClick={() => {window.print()}} >
                                Print Bill
                            </Button>
+                           {/* <ReactToPrint
+                             trigger={() => <button>Print this out!</button>}
+                             content={() => this.componentRef}
+                           /> */}
                       </CardActions>
                      </Card>
         </div>
