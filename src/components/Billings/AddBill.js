@@ -1,5 +1,6 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
+import {Typography} from '@material-ui/core'
 import {startAddBill} from '../../actions/billsAction'
 import BillsForm from './BillsForm'
 
@@ -13,7 +14,7 @@ const AddBill = (props) => {
     return (
         <div>
             <hr />
-            <h2>Add a Bill</h2>
+            <Typography variant="b" component="h2" style={{ color : 'teal',marginBottom : '20px'}}>Add a Bill</Typography>
             <BillsForm
               formSubmit={formSubmit}
             />

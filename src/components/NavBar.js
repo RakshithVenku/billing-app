@@ -2,9 +2,17 @@ import React from 'react'
 import { Link, Route, withRouter } from 'react-router-dom'
 // import {removeUser, resetNote, removeAccount} from '../actions/usersAction'
 // import {useDispatch} from 'react-redux'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import {AppBar, Button, Toolbar, Typography } from '@material-ui/core'
+import { makeStyles} from "@material-ui/core/styles"
+import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp';
+import DashboardSharpIcon from '@material-ui/icons/DashboardSharp';
+import PeopleSharpIcon from '@material-ui/icons/PeopleSharp';
+import StoreSharpIcon from '@material-ui/icons/StoreSharp';
+import AttachMoneySharpIcon from '@material-ui/icons/AttachMoneySharp';
+import ExitToAppSharpIcon from '@material-ui/icons/ExitToAppSharp';
+import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
+import PersonAddSharpIcon from '@material-ui/icons/PersonAddSharp';
+import HomeSharpIcon from '@material-ui/icons/HomeSharp';
 import swal from 'sweetalert'
 import Home from './Home'
 import Register from './Register'
@@ -17,20 +25,35 @@ import BillsContainer from './Billings/BillsContainer'
 import ShowBill from './Billings/ShowBill'
 
 
+const useStyles = makeStyles((theme)=>({
+    appBarDiv : {
+        
+        backgroundColor: 'teal'
+    },
+    toolbarDiv : {
+        margin : 'auto'
+    },
+    buttonUi : {
+        color: 'turquoise'
+    }
+}))
 
 const NavBar = (props) => {
     const {userLoggedIn, handleAuth, handleShowBill} = props
+    const classes = useStyles()
     return (
         <div>
-            <p  style={{textAlign : "center"}}>
+            <AppBar  className ={classes.appBarDiv} position ="static">
+                <Toolbar  className ={classes.toolbarDiv}>
+            <div >
              {userLoggedIn ? (
                  <>
-                     <span><Link to="/account">My Account</Link></span> |
-                     <span><Link to="/dashboard">Dashboard</Link></span> |
-                     <span><Link to="/customers">Customers</Link></span> |
-                     <span><Link to="/products">Products</Link></span> |
-                     <span><Link to="/billing">Billing</Link></span> |
-                     <span style={{color: 'blue', cursor : 'pointer'}} onClick={() => {
+                     <Button className ={classes.buttonUi} component={Link} to="/account" ><AccountCircleSharpIcon/>My Account</Button> |  
+                     <Button className ={classes.buttonUi} component={Link} to="/dashboard"><DashboardSharpIcon/>Dashboard</Button> |  
+                     <Button className ={classes.buttonUi} component={Link} to="/customers"><PeopleSharpIcon/>Customers</Button> |  
+                     <Button className ={classes.buttonUi} component={Link} to="/products"><StoreSharpIcon/>Products</Button> |  
+                     <Button className ={classes.buttonUi} component={Link}  to="/billing"><AttachMoneySharpIcon/>Billing</Button> |  
+                     <Button  style={{color: 'mediumaquamarine'}} onClick={() => {
                          
                          swal({
                              title: "Are you sure?",
@@ -50,16 +73,18 @@ const NavBar = (props) => {
                                  props.history.push('/')
                                }
                            })
-                      }}>Logout</span>  
+                      }}><ExitToAppSharpIcon/>Logout</Button>  
                 </>
              ) : ( 
                  <>
-                     <span><Link to="/">Home</Link></span> | 
-                     <span><Link to="/register">Register</Link></span> |
-                     <span><Link to="/login">Login</Link></span>
+                     <Button className ={classes.buttonUi} component={Link} to="/"><HomeSharpIcon/>Home</Button> | 
+                     <Button className ={classes.buttonUi} component={Link} to="/register"><PersonAddSharpIcon/>Register</Button> |
+                     <Button style={{color: 'mediumaquamarine'}} component={Link} to="/login"><LockOpenSharpIcon/>Login</Button>
                  </>   
              )}
-            </p>
+            </div>
+            </Toolbar>
+            </AppBar>
      
             <Route path="/" component={Home} exact={true} />
             <Route path="/register" component={Register} />

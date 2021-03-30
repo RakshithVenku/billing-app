@@ -102,7 +102,7 @@ const Register = (props) => {
             <Avatar  className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">Register with us</Typography>
+            <Typography component="h1" variant="h5" style={{ color : 'teal'}}>Register with us</Typography>
             
             
             

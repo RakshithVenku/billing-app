@@ -31,7 +31,8 @@ const ShowBill = (props) => {
 
     return (
         <div>
-           <Typography variant="h4" align="center">Bill INVOICE</Typography>
+            
+           <Typography variant="h4" align="center" style={{ color : 'teal'}}>Bill INVOICE</Typography>
           
            <Card  elevation={10}>
            <CardActionArea>

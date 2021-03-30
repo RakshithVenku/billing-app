@@ -1,34 +1,39 @@
 import React from 'react'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, List , Paper, ListItem} from '@material-ui/core'
+import ArrowForwardSharpIcon from '@material-ui/icons/ArrowForwardSharp';
 import EmojiPeopleSharpIcon from '@material-ui/icons/EmojiPeopleSharp';
+import CopyrightIcon from '@material-ui/icons/Copyright';
 
 const Home = (props) => {
 
     return (
-        <div style={{textAlign : "center"}}>
+        <div style={{textAlign : "center" , margin : "80px 80px 20px 80px"}}>
             
-            <Grid container spacing={2}>
-                <Grid item xs={6} style={{textAlign : 'left'}} >
+            <Paper elevation={8}>
+            <Grid container spacing={4}>
+             
+                <Grid item xs={6}  >
                     <h1>Hello User<EmojiPeopleSharpIcon />...</h1>
                     <h2>If you are new to this App, follow the steps bellow: </h2>
                     <br/>
-                    <Typography variant="p">
-                        <li>Register your account.</li>
-                        <li>Login with your credentials.</li>
-                        <li>After login, a dashboard page will appear.</li>
-                        <li>Add new customers and products in the respective links.</li>
-                        <li>Create bill for the customers visited.</li>
-                        <li>Click "bill" link from the bills list to see a particular bill.</li>
-                        <li>Click "Print Bill" to print/save the bill.</li> 
-                    </Typography>
+                    <List component='ul'>
+                        <ListItem><ArrowForwardSharpIcon/> Register your account.</ListItem>
+                        <ListItem><ArrowForwardSharpIcon/> Login with your credentials.</ListItem>
+                        <ListItem><ArrowForwardSharpIcon/> After login, a dashboard page will appear.</ListItem>
+                        <ListItem><ArrowForwardSharpIcon/> Add new customers and products in the respective links.</ListItem>
+                        <ListItem><ArrowForwardSharpIcon/> Create bill for the customers visited.</ListItem>
+                        <ListItem><ArrowForwardSharpIcon/> Click "bill" link from the bills list to see a particular bill.</ListItem>
+                        <ListItem><ArrowForwardSharpIcon/> Click "Print Bill" to print/save the bill.</ListItem> 
+                    </List>
                 </Grid>
-
                 <Grid item xs={6}>
                    <img src="https://via.placeholder.com/250" alt=""></img>
                 </Grid>
+             
             </Grid>
-            <Typography variant="h5" component="h3">
-                @Created by Rakshith
+            </Paper> 
+            <Typography style={{marginTop: '50px'}} >
+                <CopyrightIcon/>2021, Created by Rakshith.
             </Typography>
         </div>
     )

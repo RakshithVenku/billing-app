@@ -77,7 +77,7 @@ const Login = (props) => {
                <Avatar  className={classes.avatar}>
                  <LockOutlinedIcon />
                </Avatar>
-               <Typography component="h1" variant="h5">Login</Typography>
+               <Typography component="h1" variant="h5" style={{ color : 'teal'}}>Login</Typography>
                <form onSubmit={handleSubmit}>
                    <TextField  variant="outlined" type="text" style={{marginBottom : '10px'}} placeholder="enter email" value={email} onChange={handleChange} name="email" />
                    { formErrors.email && <span style={{color : 'red'}}> {formErrors.email} </span> }

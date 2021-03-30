@@ -21,9 +21,9 @@ const App = (props) => {
   }, [])
 
   return (
-    <Container component="main">
+    <Container component="main" >
        <div>
-           <h1 style={{textAlign : "center"}}>Billing App</h1>
+           <h2 style={{textAlign : "center",color : 'teal'}}>Billing App</h2>
            <NavBar userLoggedIn={userLoggedIn} handleAuth={handleAuth} showBill={showBill} handleShowBill={handleShowBill} />
        </div>
     </Container>

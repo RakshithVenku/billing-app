@@ -33,8 +33,8 @@ const DashBoard = (props) => {
     }
 
     return (
-        <div style={{textAlign : 'center'}}>
-            <Typography variant="h4" component="h2" style={{textAlign : 'center'}}>User DashBoard</Typography>
+        <Container style={{textAlign : 'center'}}>
+            <Typography variant="b" component="h2" style={{ textAlign : 'center', color : 'teal'}}>User DashBoard</Typography>
             <Grid container spacing={2} justify="center" >
                 <Grid item xs={3}>
                     <Card elevation={8}>
@@ -97,7 +97,7 @@ const DashBoard = (props) => {
                 </Grid>
             </Grid>
 
-        </div>
+        </Container>
     )
 }
 

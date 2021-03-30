@@ -1,5 +1,6 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
+import {Typography} from '@material-ui/core'
 import {startAddProduct} from '../../actions/usersAction'
 import ProductsForm from './ProductsForm'
 
@@ -13,7 +14,7 @@ const AddProduct = (props) => {
     return (
         <div>
             <hr />
-            <h2>Add a Product</h2>
+            <Typography variant="b" component="h2" style={{ color : 'teal',marginBottom : '20px'}}>Add a Product</Typography>
             <ProductsForm
               formSubmit={formSubmit}
             />

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import './index.css'
+import './index.css'
 import App from './App'
 import configureStore from './store/configureStore'
 import {startProductsList, startUserAccount, startCustomersList} from './actions/usersAction'

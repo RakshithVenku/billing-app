@@ -25,7 +25,7 @@ const CustomersList = (props) => {
     return (
         <div>
             <hr />
-            <h2>Customers List</h2>
+            <Typography variant="b" component="h2" style={{ color : 'teal'}}>Customers List</Typography>
             {customers.length === 0 ? (
                 <div>
                     <TextField  
