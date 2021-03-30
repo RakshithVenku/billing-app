@@ -2,6 +2,9 @@ import React from 'react'
 import { Link, Route, withRouter } from 'react-router-dom'
 // import {removeUser, resetNote, removeAccount} from '../actions/usersAction'
 // import {useDispatch} from 'react-redux'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import swal from 'sweetalert'
 import Home from './Home'
 import Register from './Register'

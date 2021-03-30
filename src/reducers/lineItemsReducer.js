@@ -6,14 +6,14 @@ const lineItemsReducer = (state = lineItemsInitialValue, action) => {
             return [{...action.payload}, ...state]
         }
         case 'REMOVE_ITEM' : {
-            return state.filter(item => action.payload !== item.product)
+            return state.filter(item => action.payload !== item.prodId)
         }
         case 'RESET_ITEMS' : {
             return lineItemsInitialValue
         }
         case 'DECREMENT_QUANTITY' : {
             return state.map((item) => {
-                if(item.product === action.payload){
+                if(item.prodId === action.payload){
                     return {...item, 'quantity' : item.quantity - 1}
                 }else {
                     return {...item}
@@ -22,7 +22,7 @@ const lineItemsReducer = (state = lineItemsInitialValue, action) => {
         }
         case 'INCREMENT_QUANTITY' : {
             return state.map((item) => {
-                if(item.product === action.payload){
+                if(item.prodId === action.payload){
                     return {...item, 'quantity' : item.quantity + 1}
                 }else {
                     return {...item}

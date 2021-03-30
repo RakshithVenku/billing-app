@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import {addItem, resetItems , incrementQuantity, decrementQuantity, removeItem} from '../../actions/lineItemsAction'
-import {TextField,  Button, Grid} from '@material-ui/core'
+import {TextField,  Button, Grid, Card, CardActionArea,  CardActions, CardContent, Typography} from '@material-ui/core'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 import AddCircleSharpIcon from '@material-ui/icons/AddCircleSharp';
 import RemoveCircleSharpIcon from '@material-ui/icons/RemoveCircleSharp';
 import CancelSharpIcon from '@material-ui/icons/CancelSharp';
@@ -30,6 +31,17 @@ const BillsForm = (props) => {
     const [date, setDate] = useState('')
     const [customer, setCustomer] = useState('')
     const [product, setProduct] = useState('')
+    // const [totalBill, setTotalBill] = useState(0)
+
+    const totalBillCalculation = () => {
+        let total = 0
+
+        lineItems.forEach((item) => {
+            total += (item.price * item.quantity)
+        })
+
+        return total
+    }
     
 
     const handleDateChange = (e) => {
@@ -46,9 +58,11 @@ const BillsForm = (props) => {
     }
 
     const itemGenerator = (item) => {
-        let quantity = 0
+        let quantity = 1
         const itemObj = {
+            'prodId' : new Date(),
             'prodName' : item.name,
+            'price' : item.price,
             'product' : item._id,
             'quantity' : quantity
         }
@@ -91,12 +105,12 @@ const BillsForm = (props) => {
             <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
 
-                <Grid item xs={12}> 
-                   <TextField variant="outlined" size="small"  placeholder="YYYY-MM-DD" value={date} onChange={handleDateChange} /><br/>
-                </Grid>
+                <Grid item xs={6}> 
+                   <TextField type='date' variant="outlined" size="small"  placeholder="YYYY-MM-DD" value={date} onChange={handleDateChange} /><br/>
+                {/* </Grid> */}
 
-                <Grid item xs={12}> 
-                   <FormControl size="small" style={{width:"210px"}} >
+                {/* <Grid item xs={12}>  */}
+                   <FormControl size="small" style={{width:"210px", marginTop: '20px'}} >
                       <InputLabel id="demo-simple-select-label">Customer</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
@@ -108,11 +122,20 @@ const BillsForm = (props) => {
                             return <MenuItem key={customer._id} value={customer._id}>{customer.name}</MenuItem>
                         })}
                       </Select>
-                   </FormControl>
-                </Grid>
+                   </FormControl><br/>
+                     {/* <Autocomplete
+                           id="combo-box-demo"
+                           options={customers}
+                           value={customer}
+                           onChange={handleCustomerChange}
+                           getOptionLabel={(customer) => customer.name}
+                           style={{ width: 300 }}
+                           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+                         /> */}
+                {/* </Grid> */}
 
-                <Grid item xs={12}> 
-                   <FormControl size="small" style={{width:"210px"}} >
+                {/* <Grid item xs={12}>  */}
+                   <FormControl size="small" style={{width:"210px",marginTop : '20px'}} >
                       <InputLabel id="demo-simple-select-label">Product</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
@@ -129,27 +152,41 @@ const BillsForm = (props) => {
                         })}
                       </Select>
                    </FormControl>
+
+                   <Grid item xs={12} style={{marginTop: '20px'}}> 
+                      <Button type="submit" size="small" variant="contained" color="primary"> add </Button>
+                   </Grid>
                 </Grid>
 
-                <Grid item xs={12}>
-                <ul>
-                    {lineItems.map((item) => {
-                       return <li key={item.product}>{item.prodName} 
-                               <Button size="small" color="primary"
-                                  onClick={() => {handleDecre(item.product)}}> <RemoveCircleSharpIcon /> </Button>
-                               {item.quantity}
+                <Grid item xs={6} >
+                    {lineItems.length > 0 && (
+                        <div>
+                            <Typography variant='h5'>Items List :</Typography>
+                            <Typography variant='p'>Total Bill : ₹{totalBillCalculation()}</Typography>
+                        </div>
+                    )}
 
-                               <Button size="small" color="primary"
-                                  onClick={() => {handleIncre(item.product)}}> <AddCircleSharpIcon /></Button>
-                               <Button size="small" color="secondary"
-                                  onClick={() => {handleRemove(item.product)}} > <CancelSharpIcon /> </Button>
-                               </li>
-                    })}
-                </ul>
-                </Grid>
-                
-                <Grid item xs={12}> 
-                   <Button type="submit" size="small" variant="contained" color="primary"> add </Button>
+                    <Grid item xs={12} style={{overflowY : lineItems.length > 0 && 'scroll' , maxHeight : '400px'}}>
+                       {lineItems.map((item) => {
+                          return <Card elevation={4} style={{marginBottom : '20px', width:'250px'}} size="small" key={item.prodId}>
+                                 <CardActionArea>
+                                   <CardContent>
+                                      {item.prodName} - <b>₹{item.price}</b>
+                                   </CardContent>
+                                   <CardActions>
+                                      <Button size="small" color="primary"
+                                        onClick={() => {handleDecre(item.prodId)}}> <RemoveCircleSharpIcon /> </Button>
+                                     {item.quantity}
+      
+                                     <Button size="small" color="primary"
+                                        onClick={() => {handleIncre(item.prodId)}}> <AddCircleSharpIcon /></Button>
+                                     <Button size="small" color="secondary"
+                                        onClick={() => {handleRemove(item.prodId)}} > <CancelSharpIcon /> </Button>
+                                   </CardActions>
+                                 </CardActionArea>
+                                  </Card>
+                       })}
+                    </Grid>
                 </Grid>
             </Grid>
                

@@ -52,7 +52,7 @@ const CustomersForm = (props) => {
                 </Grid>
                 
                 <Grid item xs={12}> 
-                <Button type="submit" size="small" variant="contained" color="primary"> add </Button>
+                <Button type="submit" size="small" variant="contained" color="primary"> {customerName ? 'Save' : 'Add'} </Button>
                 </Grid>
             </Grid>
                
