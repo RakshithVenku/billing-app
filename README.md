@@ -14,3 +14,6 @@ A POS based application used to add and maintain customers and products data and
 * material-ui
 * redux-thunk
 * react-router-dom
+
+### Deployed on Heroku 
+[billing-app-react-redux](https://billing-app-react-redux.herokuapp.com/)
