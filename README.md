@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# About this App
+## About this App
 
 A POS based application used to add and maintain customers and products data and create bills for chosen products.
 
