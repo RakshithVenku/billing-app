@@ -1,5 +1,6 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
+import {Typography} from '@material-ui/core'
 import ProductsForm from './ProductsForm'
 import {startEditProduct} from '../../actions/usersAction'
 
@@ -18,7 +19,7 @@ const EditProduct = (props) => {
 
     return (
         <div>
-            <h3>Edit Product</h3>
+            <Typography variant="b" component="h3" style={{ color : 'teal',marginBottom : '20px'}}>Edit Product</Typography>
             <ProductsForm id={id} name={name} price={price} formSubmit={formSubmit} />
         </div>
     )

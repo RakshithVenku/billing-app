@@ -3,6 +3,7 @@ import { Grid, Typography, List , Paper, ListItem} from '@material-ui/core'
 import ArrowForwardSharpIcon from '@material-ui/icons/ArrowForwardSharp';
 import EmojiPeopleSharpIcon from '@material-ui/icons/EmojiPeopleSharp';
 import CopyrightIcon from '@material-ui/icons/Copyright';
+import photo from './billing-photo.jpg'
 
 const Home = (props) => {
 
@@ -27,7 +28,7 @@ const Home = (props) => {
                     </List>
                 </Grid>
                 <Grid item xs={6}>
-                   <img src="https://via.placeholder.com/250" alt=""></img>
+                   <img src={photo} style={{width : '400px', height: '300px'}} alt=""></img>
                 </Grid>
              
             </Grid>
