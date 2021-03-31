@@ -17,11 +17,11 @@ const BillsContainer = (props) => {
     return (
         <div >
             <Grid container spacing={3}>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                     <BillsList handleShowBill={handleShowBill}/>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                     <AddBill />
                 </Grid>
             </Grid>

@@ -91,7 +91,7 @@ const Login = (props) => {
 
                    <Grid container justify="flex-end">
                <Grid item>
-                 <Link href="/register" variant="body2">
+                 <Link href="/register" style={{ color : 'teal'}} variant="body2">
                    Don't have an account? Sign up
                  </Link>
                </Grid>

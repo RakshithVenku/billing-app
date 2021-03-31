@@ -53,16 +53,16 @@ const CustomersItem = (props) => {
                     <Button  onClick={handleToggle}> cancel </Button>
                 </div>
             ) : (
-                <Card elevation={4}>
+                <Card elevation={4} style={{  color:'teal'}}>
                       <CardActionArea>
                         <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
+                          <Typography gutterBottom variant="b" component="h1">
                             {name}
                           </Typography>
-                          <Typography variant="body2" color="textSecondary" component="p">
+                          <Typography variant="body2"  component="p">
                             mobile: +91 {mobile}
                           </Typography>
-                          <Typography variant="body2" color="textSecondary" component="p">
+                          <Typography variant="body2"  component="p">
                             email: {email}
                           </Typography>
                         </CardContent>

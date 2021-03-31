@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link, Route, withRouter } from 'react-router-dom'
-// import {removeUser, resetNote, removeAccount} from '../actions/usersAction'
-// import {useDispatch} from 'react-redux'
 import {AppBar, Button, Toolbar, Typography } from '@material-ui/core'
 import { makeStyles} from "@material-ui/core/styles"
 import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp';

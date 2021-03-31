@@ -54,7 +54,7 @@ const ProductsList = (props) => {
                     <Grid container spacing={2} style={{overflowY : 'scroll', maxHeight : '400px'}} >
                          {products.map((product) => {
                             return (
-                                <Grid item xs={6} key={product._id}>
+                                <Grid item xs={12} sm={6} key={product._id}>
                                     <ProductsItem  {...product} />
                                 </Grid>
                             )

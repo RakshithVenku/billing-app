@@ -31,6 +31,26 @@ const BillsForm = (props) => {
     const [date, setDate] = useState('')
     const [customer, setCustomer] = useState('')
     const [product, setProduct] = useState('')
+    const [formErrors, setFormErrors] = useState({})
+    const errors = {}
+
+    const runValidations = () => {
+        //date
+        if(date.trim().length === 0){
+            errors.date = 'date cannot be blank'
+        }
+
+        //customer 
+        if(customer.trim().length === 0){
+            errors.customer = 'customer cannot be blank'
+        }
+
+        //product 
+        if(product.trim().length === 0){
+            errors.product = 'product cannot be blank'
+        }
+    }
+
 
     const totalBillCalculation = () => {
         let total = 0
@@ -104,17 +124,25 @@ const BillsForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        const formData = {
-            "date" : date ,
-            "customer" : customer,
-            "lineItems" : lineItems
-        }
+        runValidations()
 
-        formSubmit(formData)
-        setDate('')
-        setCustomer('')
-        setProduct('')
-        dispatch(resetItems())
+        if(Object.keys(errors).length === 0){
+            setFormErrors({})
+            const formData = {
+                "date" : date ,
+                "customer" : customer,
+                "lineItems" : lineItems
+            }
+    
+            formSubmit(formData)
+            setDate('')
+            setCustomer('')
+            setProduct('')
+            dispatch(resetItems())
+        }else{
+            console.log('register form errors', errors)
+            setFormErrors(errors)
+        }
     }
 
     return (
@@ -123,8 +151,8 @@ const BillsForm = (props) => {
             <Grid container spacing={2}>
 
                 <Grid item xs={6}> 
-                   <TextField type='date' variant="outlined" size="small"  placeholder="YYYY-MM-DD" value={date} onChange={handleDateChange} /><br/>
-
+                   <TextField type='date' variant="outlined" size="small"  placeholder="YYYY-MM-DD" value={date} onChange={handleDateChange} />
+                   { formErrors.date && <Typography style={{color : 'red'}}> {formErrors.date} </Typography> }
            
                    {/* <FormControl size="small" style={{width:"210px", marginTop: '20px'}} >
                       <InputLabel id="demo-simple-select-label">Customer</InputLabel>
@@ -148,6 +176,7 @@ const BillsForm = (props) => {
                          <TextField {...params} label="customer" variant="outlined" fullWidth />
                        )}
                      />
+                     { formErrors.customer && <Typography style={{color : 'red'}}> {formErrors.customer} </Typography> }
                      
 
   
@@ -178,6 +207,7 @@ const BillsForm = (props) => {
                          <TextField {...params} label="product" variant="outlined" fullWidth />
                        )}
                      />
+                     { formErrors.product && <Typography style={{color : 'red'}}> {formErrors.product} </Typography> }
                     
 
                    <Grid item xs={12} style={{marginTop: '20px'}}> 
@@ -188,8 +218,8 @@ const BillsForm = (props) => {
                 <Grid item xs={6} >
                     {lineItems.length > 0 && (
                         <div>
-                            <Typography variant='h5'>Items List :</Typography>
-                            <Typography >Total Bill : ₹{totalBillCalculation()}</Typography>
+                            <Typography style={{ color : 'teal'}} variant='b' component='h3'>Items List :</Typography>
+                            <Typography style={{ color : 'teal'}}>Total Bill : ₹{totalBillCalculation()}</Typography>
                         </div>
                     )}
 
@@ -203,8 +233,8 @@ const BillsForm = (props) => {
                                    <CardActions>
                                       <Button size="small" color="primary"
                                         onClick={() => {handleDecre(item.prodId)}}> <RemoveCircleSharpIcon /> 
-                                     {item.quantity}
                                      </Button>
+                                     {item.quantity}
                                      <Button size="small" color="primary"
                                         onClick={() => {handleIncre(item.prodId)}}> <AddCircleSharpIcon />
                                      </Button>
