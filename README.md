@@ -8,7 +8,12 @@ A POS based application used to add and maintain customers and products data and
 
 ### Packages Used
 
-redux, react-redux, sweetalert, material-ui, redux-thunk, react-router-dom
+* redux
+* react-redux
+* sweetalert
+* material-ui
+* redux-thunk
+* react-router-dom
 
 
 ## Available Scripts
