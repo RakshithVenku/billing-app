@@ -25,7 +25,7 @@ const ProductsList = (props) => {
     return (
         <div>
             <hr />
-            <Typography variant="b" component="h2" style={{ color : 'teal'}}>Products List</Typography>
+            <Typography variant="inherit" component="h2" style={{ color : 'teal'}}>Products List</Typography>
             {products.length === 0 ? (
                 <div>
                     <TextField  

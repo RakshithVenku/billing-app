@@ -56,7 +56,7 @@ const CustomersItem = (props) => {
                 <Card elevation={4} style={{  color:'teal'}}>
                       <CardActionArea>
                         <CardContent>
-                          <Typography gutterBottom variant="b" component="h1">
+                          <Typography gutterBottom variant="inherit" component="h1">
                             {name}
                           </Typography>
                           <Typography variant="body2"  component="p">

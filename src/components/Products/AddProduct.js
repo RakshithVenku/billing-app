@@ -14,7 +14,7 @@ const AddProduct = (props) => {
     return (
         <div>
             <hr />
-            <Typography variant="b" component="h2" style={{ color : 'teal',marginBottom : '20px'}}>Add a Product</Typography>
+            <Typography variant="inherit" component="h2" style={{ color : 'teal',marginBottom : '20px'}}>Add a Product</Typography>
             <ProductsForm
               formSubmit={formSubmit}
             />

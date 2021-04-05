@@ -201,6 +201,7 @@ const BillsForm = (props) => {
                    <Autocomplete
                        options={products}
                        getOptionLabel={(option) => option.name}
+                       value={product || ''}
                        onChange={handleProductChange}
                        style={{width:"194px", marginTop: '20px'}}
                        renderInput={(params) => (

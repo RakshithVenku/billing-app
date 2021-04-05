@@ -14,7 +14,7 @@ const AddCustomer = (props) => {
     return (
         <div>
             <hr />
-            <Typography variant="b" component="h2" style={{ color : 'teal',marginBottom : '20px'}}>Add a Customer</Typography>
+            <Typography variant="inherit" component="h2" style={{ color : 'teal',marginBottom : '20px'}}>Add a Customer</Typography>
             <CustomersForm
               formSubmit={formSubmit}
             />

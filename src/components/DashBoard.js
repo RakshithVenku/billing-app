@@ -50,7 +50,7 @@ const DashBoard = (props) => {
 
     return (
         <Container style={{textAlign : 'center'}}>
-            <Typography variant="b" component="h2" style={{ textAlign : 'center', color : 'teal'}}>User DashBoard</Typography>
+            <Typography variant="inherit" component="h2" style={{ textAlign : 'center', color : 'teal'}}>User DashBoard</Typography>
             <Grid container spacing={2} justify="center" >
                 <Grid item xs={12} sm={3}>
                     <Card elevation={8} style={{ backgroundColor : 'teal', color:'turquoise'}}>

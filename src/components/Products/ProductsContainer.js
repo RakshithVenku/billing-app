@@ -16,11 +16,11 @@ const ProductsContainer = (props) => {
     return (
         <div >
             <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={8}>
                     <ProductsList/>
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={4}>
                     <AddProduct />
                 </Grid>
             </Grid>

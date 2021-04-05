@@ -14,7 +14,7 @@ const AddBill = (props) => {
     return (
         <div>
             <hr />
-            <Typography variant="b" component="h2" style={{ color : 'teal',marginBottom : '20px'}}>Add a Bill</Typography>
+            <Typography variant="inherit" component="h2" style={{ color : 'teal',marginBottom : '20px'}}>Add a Bill</Typography>
             <BillsForm
               formSubmit={formSubmit}
             />

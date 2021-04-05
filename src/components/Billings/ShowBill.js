@@ -6,6 +6,18 @@ import PrintIcon from '@material-ui/icons/Print';
 import {Card, CardActionArea, CardActions, CardContent, Button, Typography} from '@material-ui/core';
 import {Table, TableBody, TableCell, TableHead, TableRow} from '@material-ui/core';
 
+// function printDiv() {
+//     var divContents = document.getElementById("GFG").innerHTML;
+//             var a = window.open('', '', 'height=1500, width=1500');
+//             a.document.write('<html>');
+//             a.document.write('<body style = "height=:1500, width:1500" > <h1>Div contents are <br>');
+//             a.document.write(divContents);
+//             a.document.write('</body></html>');
+//             a.document.close();
+//             a.print();
+     
+// }
+
 const ShowBill = (props) => {
     let dispatch = useDispatch()
     const {handleShowBill} = props
